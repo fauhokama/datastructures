@@ -42,7 +42,28 @@ public class DynamicArray {
     }
 
     // Insertion O(n)
+    public void insert(int element, int index) {
+        this.numberOfElements++;
 
+        int capacity = this.array.length;
+        if (this.numberOfElements > this.array.length) {
+            capacity *= 2;
+        }
+        int[] tmp = new int[capacity];
+
+        for (int i = 0, j = 0; i <= this.array.length; i++, j++) {
+            if (index == i) {
+                tmp[i] = element;
+                j--;
+            } else {
+                tmp[i] = this.array[j];
+            }
+        }
+
+        this.array = tmp;
+    }
+
+    // Access O(1)
     public int get(int index) {
         return this.array[index];
     }
