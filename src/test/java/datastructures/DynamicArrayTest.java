@@ -96,4 +96,43 @@ public class DynamicArrayTest {
 
         assertEquals(3, da.get(0));
     }
+
+    @Test
+    public void testInsertAtBeggining() {
+        DynamicArray da = new DynamicArray();
+        da.add(1);
+        da.add(2);
+
+        da.insert(3, 0);
+
+        assertEquals(3, da.get(0));
+        assertEquals(1, da.get(1));
+        assertEquals(2, da.get(2));
+    }
+
+    @Test
+    public void testInsertAtMiddle() {
+        DynamicArray da = new DynamicArray();
+        da.add(1);
+        da.add(2);
+
+        da.insert(3, 1);
+
+        assertEquals(1, da.get(0));
+        assertEquals(3, da.get(1));
+        assertEquals(2, da.get(2));
+    }
+
+    @Test
+    public void testInsertAtEnd() {
+        DynamicArray da = new DynamicArray();
+        da.add(1);
+        da.add(2);
+
+        da.insert(3, 2);
+
+        assertEquals(1, da.get(0));
+        assertEquals(2, da.get(1));
+        assertEquals(3, da.get(2));
+    }
 }
