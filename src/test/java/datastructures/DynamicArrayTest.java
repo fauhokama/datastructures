@@ -135,4 +135,25 @@ public class DynamicArrayTest {
         assertEquals(2, da.get(1));
         assertEquals(3, da.get(2));
     }
+
+    @Test
+    public void testSearchFound() {
+        DynamicArray da = new DynamicArray();
+
+        da.add(1);
+        da.add(2);
+
+        assertEquals(0, da.search(1));
+        assertEquals(1, da.search(2));
+    }
+
+    @Test
+    public void testSearchNotFound() {
+        DynamicArray da = new DynamicArray();
+
+        da.add(1);
+        da.add(2);
+
+        assertEquals(-1, da.search(3));
+    }
 }
