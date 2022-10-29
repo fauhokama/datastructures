@@ -68,6 +68,16 @@ public class DynamicArray {
         return this.array[index];
     }
 
+    // Search O(n)
+    public int search(int element) {
+        for (int i = 0; i < this.array.length; i++) {
+            if (this.array[i] == element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public int getLength() {
         return this.array.length;
     }
