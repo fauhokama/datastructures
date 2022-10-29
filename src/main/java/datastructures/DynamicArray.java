@@ -9,6 +9,43 @@ public class DynamicArray {
         this.array = new int[1];
     }
 
+    // Access O(1)
+    public int get(int index) {
+        return this.array[index];
+    }
+
+    // Search O(n)
+    public int search(int element) {
+        for (int i = 0; i < this.array.length; i++) {
+            if (this.array[i] == element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // Insertion O(n)
+    public void insert(int element, int index) {
+        this.numberOfElements++;
+
+        int capacity = this.array.length;
+        if (this.numberOfElements > this.array.length) {
+            capacity *= 2;
+        }
+        int[] tmp = new int[capacity];
+
+        for (int i = 0, j = 0; i <= this.array.length; i++, j++) {
+            if (index == i) {
+                tmp[i] = element;
+                j--;
+            } else {
+                tmp[i] = this.array[j];
+            }
+        }
+
+        this.array = tmp;
+    }
+
     // Appending O(n)
     public void add(int element) {
         this.numberOfElements++;
@@ -39,43 +76,6 @@ public class DynamicArray {
         }
         this.array = tmp;
         return found;
-    }
-
-    // Insertion O(n)
-    public void insert(int element, int index) {
-        this.numberOfElements++;
-
-        int capacity = this.array.length;
-        if (this.numberOfElements > this.array.length) {
-            capacity *= 2;
-        }
-        int[] tmp = new int[capacity];
-
-        for (int i = 0, j = 0; i <= this.array.length; i++, j++) {
-            if (index == i) {
-                tmp[i] = element;
-                j--;
-            } else {
-                tmp[i] = this.array[j];
-            }
-        }
-
-        this.array = tmp;
-    }
-
-    // Access O(1)
-    public int get(int index) {
-        return this.array[index];
-    }
-
-    // Search O(n)
-    public int search(int element) {
-        for (int i = 0; i < this.array.length; i++) {
-            if (this.array[i] == element) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public int getLength() {
