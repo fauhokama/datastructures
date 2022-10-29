@@ -48,4 +48,47 @@ public class DynamicArrayTest {
         assertEquals(3, da.get(2));
         assertEquals(4, da.get(3));
     }
+
+    @Test
+    public void testRemove() {
+        DynamicArray da = new DynamicArray();
+        da.add(1);
+        da.add(2);
+        da.remove(1);
+
+        assertEquals(2, da.get(0));
+    }
+
+    @Test
+    public void testRemove2() {
+        DynamicArray da = new DynamicArray();
+        da.add(1);
+        da.add(2);
+        da.remove(2);
+
+        assertEquals(1, da.get(0));
+    }
+
+    @Test
+    public void testRemove3() {
+        DynamicArray da = new DynamicArray();
+        da.add(1);
+        da.add(2);
+        da.remove(3);
+
+        assertEquals(1, da.get(0));
+        assertEquals(2, da.get(1));
+    }
+
+    @Test
+    public void testRemove4() {
+        DynamicArray da = new DynamicArray();
+        da.add(1);
+        da.add(2);
+        da.remove(1);
+        da.remove(2);
+        da.add(3);
+
+        assertEquals(3, da.get(0));
+    }
 }

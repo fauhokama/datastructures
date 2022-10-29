@@ -23,6 +23,21 @@ public class DynamicArray {
     }
 
     public void remove(int element) {
+        this.numberOfElements--;
+        int[] tmp = new int[this.array.length];
+        Boolean found = false;
+        for (int i = 0; i < array.length; i++) {
+            if (found == false && this.array[i] == element) {
+                found = true;
+            } else {
+                if (found) {
+                    tmp[i - 1] = this.array[i];
+                } else {
+                    tmp[i] = this.array[i];
+                }
+            }
+        }
+        this.array = tmp;
     }
 
     public int get(int index) {
@@ -38,7 +53,7 @@ public class DynamicArray {
     }
 
     public static void main(String[] args) {
-        DynamicArray da = new DynamicArray();
-        da.add(2);
+        // ArrayList as = new ArrayList<>();
+        // as.remove(as)
     }
 }
