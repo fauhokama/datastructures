@@ -1,6 +1,8 @@
 package datastructures;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -50,38 +52,41 @@ public class DynamicArrayTest {
     }
 
     @Test
-    public void testRemove() {
+    public void testRemoveFirstElement() {
         DynamicArray da = new DynamicArray();
         da.add(1);
         da.add(2);
-        da.remove(1);
+        Boolean found = da.remove(1);
 
+        assertTrue(null, found);
         assertEquals(2, da.get(0));
     }
 
     @Test
-    public void testRemove2() {
+    public void testRemoveLastElement() {
         DynamicArray da = new DynamicArray();
         da.add(1);
         da.add(2);
-        da.remove(2);
+        Boolean found = da.remove(2);
 
+        assertTrue(null, found);
         assertEquals(1, da.get(0));
     }
 
     @Test
-    public void testRemove3() {
+    public void testRemoveNotFound() {
         DynamicArray da = new DynamicArray();
         da.add(1);
         da.add(2);
-        da.remove(3);
+        Boolean found = da.remove(3);
 
+        assertFalse(null, found);
         assertEquals(1, da.get(0));
         assertEquals(2, da.get(1));
     }
 
     @Test
-    public void testRemove4() {
+    public void testRemoveAndAdd() {
         DynamicArray da = new DynamicArray();
         da.add(1);
         da.add(2);

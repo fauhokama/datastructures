@@ -2,13 +2,14 @@ package datastructures;
 
 public class DynamicArray {
     private int[] array;
-    private int numberOfElements;
+    private int numberOfElements; //
 
     public DynamicArray() {
         this.numberOfElements = 0;
         this.array = new int[1];
     }
 
+    // Appending O(n)
     public void add(int element) {
         this.numberOfElements++;
         if (this.numberOfElements > this.array.length) {
@@ -22,23 +23,25 @@ public class DynamicArray {
         this.array[this.numberOfElements - 1] = element;
     }
 
-    public void remove(int element) {
-        this.numberOfElements--;
-        int[] tmp = new int[this.array.length];
+    // Deletion O(n)
+    public boolean remove(int element) {
         Boolean found = false;
-        for (int i = 0; i < array.length; i++) {
-            if (found == false && this.array[i] == element) {
+        int[] tmp = new int[this.array.length];
+
+        for (int i = 0, j = 0; i < array.length; i++, j++) {
+            if (!found && this.array[i] == element) {
                 found = true;
+                this.numberOfElements--;
+                j--;
             } else {
-                if (found) {
-                    tmp[i - 1] = this.array[i];
-                } else {
-                    tmp[i] = this.array[i];
-                }
+                tmp[j] = this.array[i];
             }
         }
         this.array = tmp;
+        return found;
     }
+
+    // Insertion O(n)
 
     public int get(int index) {
         return this.array[index];
@@ -50,10 +53,5 @@ public class DynamicArray {
 
     public int getNumberOfElements() {
         return this.numberOfElements;
-    }
-
-    public static void main(String[] args) {
-        // ArrayList as = new ArrayList<>();
-        // as.remove(as)
     }
 }
