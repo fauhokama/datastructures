@@ -1,10 +1,10 @@
 package datastructures;
 
 public class SinglyLinkedList {
-    private SinglyLinkedNode singlyLinkedNode;
+    private SinglyLinkedNode head;
 
     public SinglyLinkedList(int value) {
-        this.singlyLinkedNode = new SinglyLinkedNode(value);
+        this.head = new SinglyLinkedNode(value);
     }
 
     class SinglyLinkedNode {
@@ -12,12 +12,12 @@ public class SinglyLinkedList {
         private SinglyLinkedNode to;
 
         public SinglyLinkedNode(int value, SinglyLinkedNode to) {
-            this.value = this.value;
+            this.value = value;
             this.to = to;
         }
 
         public SinglyLinkedNode(int value) {
-            this.value = this.value;
+            this.value = value;
             this.to = null;
         }
     }
@@ -30,6 +30,14 @@ public class SinglyLinkedList {
     }
 
     public void insertAtTail(int value) {
+        SinglyLinkedNode sln = new SinglyLinkedNode(value);
+
+        SinglyLinkedNode pointer = this.head;
+        while (pointer.to != null) {
+            pointer = pointer.to;
+        }
+
+        pointer.to = sln;
     }
 
     public void insertByIndex(int value, int index) {
@@ -45,6 +53,15 @@ public class SinglyLinkedList {
     }
 
     public int[] getAsArray() {
-        return null;
+        DynamicArray da = new DynamicArray();
+
+        SinglyLinkedNode pointer = this.head;
+        while (pointer.to != null) {
+            da.add(pointer.value);
+            pointer = pointer.to;
+        }
+        da.add(pointer.value);
+
+        return da.getAsArray();
     }
 }
