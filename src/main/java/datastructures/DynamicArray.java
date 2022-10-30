@@ -85,4 +85,12 @@ public class DynamicArray {
     public int getNumberOfElements() {
         return this.numberOfElements;
     }
+
+    public int[] getAsArray() {
+        int[] arr = new int[this.numberOfElements];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = this.array[i];
+        }
+        return arr;
+    }
 }

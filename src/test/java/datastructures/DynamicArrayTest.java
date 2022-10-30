@@ -1,5 +1,6 @@
 package datastructures;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -16,6 +17,7 @@ public class DynamicArrayTest {
         DynamicArray da = new DynamicArray();
         da.add(1);
         assertEquals(1, da.get(0));
+        assertArrayEquals(new int[] { 1 }, da.getAsArray());
     }
 
     @Test
@@ -25,6 +27,7 @@ public class DynamicArrayTest {
         da.add(2);
         assertEquals(1, da.get(0));
         assertEquals(2, da.get(1));
+        assertArrayEquals(new int[] { 1, 2 }, da.getAsArray());
     }
 
     @Test
@@ -49,6 +52,7 @@ public class DynamicArrayTest {
         assertEquals(2, da.get(1));
         assertEquals(3, da.get(2));
         assertEquals(4, da.get(3));
+        assertArrayEquals(new int[] { 1, 2, 3, 4 }, da.getAsArray());
     }
 
     @Test
@@ -60,6 +64,7 @@ public class DynamicArrayTest {
 
         assertTrue(null, found);
         assertEquals(2, da.get(0));
+        assertArrayEquals(new int[] { 2 }, da.getAsArray());
     }
 
     @Test
@@ -71,6 +76,7 @@ public class DynamicArrayTest {
 
         assertTrue(null, found);
         assertEquals(1, da.get(0));
+        assertArrayEquals(new int[] { 1 }, da.getAsArray());
     }
 
     @Test
@@ -83,6 +89,7 @@ public class DynamicArrayTest {
         assertFalse(null, found);
         assertEquals(1, da.get(0));
         assertEquals(2, da.get(1));
+        assertArrayEquals(new int[] { 1, 2 }, da.getAsArray());
     }
 
     @Test
@@ -95,6 +102,7 @@ public class DynamicArrayTest {
         da.add(3);
 
         assertEquals(3, da.get(0));
+        assertArrayEquals(new int[] { 3 }, da.getAsArray());
     }
 
     @Test
@@ -108,6 +116,7 @@ public class DynamicArrayTest {
         assertEquals(3, da.get(0));
         assertEquals(1, da.get(1));
         assertEquals(2, da.get(2));
+        assertArrayEquals(new int[] { 3, 1, 2 }, da.getAsArray());
     }
 
     @Test
@@ -121,6 +130,7 @@ public class DynamicArrayTest {
         assertEquals(1, da.get(0));
         assertEquals(3, da.get(1));
         assertEquals(2, da.get(2));
+        assertArrayEquals(new int[] { 1, 3, 2 }, da.getAsArray());
     }
 
     @Test
@@ -134,6 +144,7 @@ public class DynamicArrayTest {
         assertEquals(1, da.get(0));
         assertEquals(2, da.get(1));
         assertEquals(3, da.get(2));
+        assertArrayEquals(new int[] { 1, 2, 3 }, da.getAsArray());
     }
 
     @Test
