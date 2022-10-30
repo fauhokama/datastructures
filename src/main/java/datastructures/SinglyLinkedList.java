@@ -27,6 +27,8 @@ public class SinglyLinkedList {
     }
 
     public void insertAtHead(int value) {
+        SinglyLinkedNode sln = new SinglyLinkedNode(value, this.head);
+        this.head = sln;
     }
 
     public void insertAtTail(int value) {
