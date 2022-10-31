@@ -106,32 +106,27 @@ public class SinglyLinkedList {
         SinglyLinkedNode pointer1 = new SinglyLinkedNode(0);
         SinglyLinkedNode pointer2 = new SinglyLinkedNode(0);
 
-        pointer1.to = this.head;
+        pointer1 = this.head.to;
+        pointer2 = this.head;
+
         int counter = 1;
-
         while (true) {
-            pointer2 = pointer1.to;
-
-            if (pointer1.to == null) {
-                throw new Error("Out of bounds");
-            }
-
-            pointer1.to = pointer1.to.to;
-
             if (counter == index) {
-                if (pointer1.to == null) {
-                    throw new Error("Out of bounds");
+                if (pointer1 == null) {
+                    throw new Error("Out of bounds!");
                 }
-                pointer2.to = pointer1.to.to;
+                pointer2.to = pointer1.to;
+                pointer1.to = null;
 
                 if (pointer2.to == null) {
                     this.tail = pointer2;
                 }
-
                 break;
             }
 
             counter++;
+            pointer1 = pointer1.to;
+            pointer2 = pointer2.to;
         }
     }
 
