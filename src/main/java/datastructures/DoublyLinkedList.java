@@ -37,16 +37,24 @@ public class DoublyLinkedList {
     }
 
     public void insertAtHead(int value) {
-        DoublyLinkedNode dll = new DoublyLinkedNode(value);
-        dll.to = this.head;
-        this.head.from = dll;
-        this.head = dll;
+        DoublyLinkedNode dln = new DoublyLinkedNode(value);
+        dln.to = this.head;
+        this.head.from = dln;
+        this.head = dln;
         if (this.tail.from == null) {
             this.tail = this.head.to;
         }
     }
 
     public void insertAtTail(int value) {
+        DoublyLinkedNode dln = new DoublyLinkedNode(value);
+        this.tail.to = dln;
+        dln.from = this.tail;
+        this.tail = dln;
+
+        if (this.head.to == null) {
+            this.head = this.tail.from;
+        }
     }
 
     public void removeAtHead() {

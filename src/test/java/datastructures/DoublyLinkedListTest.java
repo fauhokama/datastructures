@@ -11,6 +11,8 @@ public class DoublyLinkedListTest {
         DoublyLinkedList dll = new DoublyLinkedList(1);
         dll.insertAtHead(2);
 
+        assertEquals(2, dll.getHead());
+        assertEquals(1, dll.getTail());
         assertArrayEquals(null, new int[] { 2, 1 }, dll.getAsArray());
 
         dll.insertAtHead(3);
