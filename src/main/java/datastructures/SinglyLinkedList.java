@@ -2,9 +2,11 @@ package datastructures;
 
 public class SinglyLinkedList {
     private SinglyLinkedNode head;
+    private SinglyLinkedNode tail;
 
     public SinglyLinkedList(int value) {
         this.head = new SinglyLinkedNode(value);
+        this.tail = new SinglyLinkedNode(value);
     }
 
     class SinglyLinkedNode {
@@ -33,15 +35,16 @@ public class SinglyLinkedList {
 
     public void insertAtTail(int value) {
         SinglyLinkedNode sln = new SinglyLinkedNode(value);
+        this.tail.to = sln;
+        this.tail = sln;
 
-        SinglyLinkedNode pointer = this.head;
-        while (pointer.to != null) {
-            pointer = pointer.to;
+        if (this.head.to == null) {
+            this.head.to = sln;
         }
-
-        pointer.to = sln;
     }
 
+    // Assumptions: you can insertByIndex in the last element.
+    // Would be the same as insertAtTail
     public void insertByIndex(int value, int index) {
         if (index == 0) {
             insertAtHead(value);
@@ -53,33 +56,25 @@ public class SinglyLinkedList {
         sln.to = this.head;
 
         int counter = 1;
-
-        while (counter <= index) {
+        while (true) {
             pointer = sln.to;
+
+            if (sln.to == null) {
+                throw new Error("Out of bounds");
+            }
+
             sln.to = sln.to.to;
+
+            if (index == counter) {
+                pointer.to = sln;
+                if (sln.to == null) {
+                    this.tail = sln;
+                }
+                break;
+            }
+
             counter++;
         }
-
-        pointer.to = sln;
-
-        // Second implementation just for better understanding.
-        // Actually, I think this is better as a first implementation.
-        // I need to look for this solution. Then, I can think of something more
-        // "pretty" programatically.
-
-        // while (true) {
-        // pointer = sln.to;
-        // SinglyLinkedNode nextNode = sln.to.to;
-        // sln.to = nextNode;
-
-        // // sln pointing to the "correct" node
-        // if (index == counter) {
-        // pointer.to = sln;
-        // break;
-        // }
-
-        // counter++;
-        // }
     }
 
     public void removeAtHead() {
@@ -160,5 +155,13 @@ public class SinglyLinkedList {
         da.add(pointer.value);
 
         return da.getAsArray();
+    }
+
+    public int getHead() {
+        return this.head.value;
+    }
+
+    public int getTail() {
+        return this.tail.value;
     }
 }
