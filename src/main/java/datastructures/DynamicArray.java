@@ -2,7 +2,7 @@ package datastructures;
 
 public class DynamicArray {
     private int[] array;
-    private int numberOfElements; //
+    private int numberOfElements;
 
     public DynamicArray() {
         this.numberOfElements = 0;
@@ -26,6 +26,10 @@ public class DynamicArray {
 
     // Insertion O(n)
     public void insert(int element, int index) {
+        if (index > this.array.length) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+
         this.numberOfElements++;
 
         int capacity = this.array.length;
@@ -49,15 +53,19 @@ public class DynamicArray {
     // Appending O(n)
     public void add(int element) {
         this.numberOfElements++;
-        if (this.numberOfElements > this.array.length) {
-            int[] tmp = new int[this.array.length * 2];
 
-            for (int i = 0; i < this.array.length; i++) {
-                tmp[i] = this.array[i];
-            }
-            this.array = tmp;
+        int capacity = this.array.length;
+        if (this.numberOfElements > this.array.length) {
+            capacity *= 2;
         }
-        this.array[this.numberOfElements - 1] = element;
+        int[] tmp = new int[capacity];
+
+        for (int i = 0; i < this.numberOfElements - 1; i++) {
+            tmp[i] = this.array[i];
+        }
+        tmp[this.numberOfElements - 1] = element;
+
+        this.array = tmp;
     }
 
     // Deletion O(n)
@@ -65,15 +73,19 @@ public class DynamicArray {
         Boolean found = false;
         int[] tmp = new int[this.array.length];
 
-        for (int i = 0, j = 0; i < array.length; i++, j++) {
+        for (int i = 0, j = 0; i < this.numberOfElements; i++, j++) {
             if (!found && this.array[i] == element) {
                 found = true;
-                this.numberOfElements--;
                 j--;
             } else {
                 tmp[j] = this.array[i];
             }
         }
+
+        if (found) {
+            this.numberOfElements--;
+        }
+
         this.array = tmp;
         return found;
     }

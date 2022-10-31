@@ -7,9 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/**
- * ArrayList
- */
 public class DynamicArrayTest {
 
     @Test
@@ -35,15 +32,19 @@ public class DynamicArrayTest {
         DynamicArray da = new DynamicArray();
         assertEquals(1, da.getLength());
         assertEquals(0, da.getNumberOfElements());
+
         da.add(1);
         assertEquals(1, da.getLength());
         assertEquals(1, da.getNumberOfElements());
+
         da.add(2);
         assertEquals(2, da.getLength());
         assertEquals(2, da.getNumberOfElements());
+
         da.add(3);
         assertEquals(4, da.getLength());
         assertEquals(3, da.getNumberOfElements());
+
         da.add(4);
         assertEquals(4, da.getLength());
         assertEquals(4, da.getNumberOfElements());
@@ -166,5 +167,11 @@ public class DynamicArrayTest {
         da.add(2);
 
         assertEquals(-1, da.search(3));
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testIndexOutOfBounds() {
+        DynamicArray da = new DynamicArray();
+        da.insert(1, 1);
     }
 }
