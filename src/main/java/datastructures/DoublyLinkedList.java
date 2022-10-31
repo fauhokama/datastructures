@@ -37,6 +37,13 @@ public class DoublyLinkedList {
     }
 
     public void insertAtHead(int value) {
+        DoublyLinkedNode dll = new DoublyLinkedNode(value);
+        dll.to = this.head;
+        this.head.from = dll;
+        this.head = dll;
+        if (this.tail.from == null) {
+            this.tail = this.head.to;
+        }
     }
 
     public void insertAtTail(int value) {
@@ -52,14 +59,23 @@ public class DoublyLinkedList {
     }
 
     public int getHead() {
-        return -1;
+        return this.head.value;
     }
 
     public int getTail() {
-        return -1;
+        return this.tail.value;
     }
 
     public int[] getAsArray() {
-        return new int[] {};
+        DynamicArray da = new DynamicArray();
+
+        DoublyLinkedNode dln = this.head;
+        da.add(this.head.value);
+        while (dln.to != null) {
+            dln = dln.to;
+            da.add(dln.value);
+        }
+
+        return da.getAsArray();
     }
 }
