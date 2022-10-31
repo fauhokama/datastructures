@@ -84,14 +84,15 @@ public class SinglyLinkedList {
     public void removeAtTail() {
         // Easy one pointer solution because of Java GC
         // If not, I think you would need two pointers to don't lose reference.
+
         if (this.head.to == null) {
+            this.tail = this.head;
             return;
         }
 
         SinglyLinkedNode pointer = new SinglyLinkedNode(0);
         pointer.to = this.head;
 
-        // First intuitive Solution
         while (true) {
             if (pointer.to.to.to == null) {
                 pointer.to.to = null;
@@ -101,12 +102,7 @@ public class SinglyLinkedList {
             pointer.to = pointer.to.to;
         }
 
-        // Second Solution:
-        // while (pointer.to.to.to != null) {
-        // pointer.to = pointer.to.to;
-        // }
-        // pointer.to.to = null;
-
+        this.tail = pointer.to;
     }
 
     public void removeAtIndex(int index) {
