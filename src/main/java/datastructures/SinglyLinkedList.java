@@ -115,7 +115,38 @@ public class SinglyLinkedList {
     }
 
     public void removeAtIndex(int index) {
+        if (index == 0) {
+            removeAtHead();
+            return;
+        }
 
+        SinglyLinkedNode pointer1 = new SinglyLinkedNode(0);
+        SinglyLinkedNode pointer2 = new SinglyLinkedNode(0);
+
+        pointer1.to = this.head;
+        int counter = 1;
+
+        // Easy intuitive solution
+        while (true) {
+            pointer2 = pointer1.to;
+            pointer1.to = pointer1.to.to;
+
+            if (counter == index) {
+                pointer2.to = pointer1.to.to;
+                break;
+            }
+
+            counter++;
+        }
+
+        // Refactor
+        // while (counter <= index) {
+        // pointer2 = pointer1.to;
+        // pointer1.to = pointer1.to.to;
+        // counter++;
+        // }
+
+        // pointer2.to = pointer1.to.to;
     }
 
     public int[] getAsArray() {
