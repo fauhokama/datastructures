@@ -43,6 +43,43 @@ public class SinglyLinkedList {
     }
 
     public void insertByIndex(int value, int index) {
+        if (index == 0) {
+            insertAtHead(value);
+            return;
+        }
+
+        SinglyLinkedNode sln = new SinglyLinkedNode(value);
+        SinglyLinkedNode pointer = new SinglyLinkedNode(value);
+        sln.to = this.head;
+
+        int counter = 1;
+
+        while (counter <= index) {
+            pointer = sln.to;
+            sln.to = sln.to.to;
+            counter++;
+        }
+
+        pointer.to = sln;
+
+        // Second implementation just for better understanding.
+        // Actually, I think this is better as a first implementation.
+        // I need to look for this solution. Then, I can think of something more
+        // "pretty" programatically.
+        
+        // while (true) {
+        // pointer = sln.to;
+        // SinglyLinkedNode nextNode = sln.to.to;
+        // sln.to = nextNode;
+
+        // // sln pointing to the "correct" node
+        // if (index == counter) {
+        // pointer.to = sln;
+        // break;
+        // }
+
+        // counter++;
+        // }
     }
 
     public void removeAtHead() {

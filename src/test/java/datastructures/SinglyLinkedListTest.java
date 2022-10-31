@@ -41,9 +41,13 @@ public class SinglyLinkedListTest {
 
         assertArrayEquals(null, new int[] { 2, 3, 1 }, sll.getAsArray());
 
-        sll.insertByIndex(4, 4);
+        sll.insertByIndex(4, 3);
 
         assertArrayEquals(null, new int[] { 2, 3, 1, 4 }, sll.getAsArray());
+
+        sll.insertByIndex(5, 2);
+
+        assertArrayEquals(null, new int[] { 2, 3, 5, 1, 4 }, sll.getAsArray());
     }
 
     @Test
