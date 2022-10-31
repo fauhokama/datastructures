@@ -134,4 +134,10 @@ public class SinglyLinkedListTest {
         assertEquals(4, sll.getTail());
         assertArrayEquals(null, new int[] { 2, 4 }, sll.getAsArray());
     }
+
+    @Test(expected = Error.class)
+    public void testRemoveAtIndexOutOfBounds() {
+        SinglyLinkedList sll = new SinglyLinkedList(1);
+        sll.removeAtIndex(1);
+    }
 }

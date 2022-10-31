@@ -117,27 +117,30 @@ public class SinglyLinkedList {
         pointer1.to = this.head;
         int counter = 1;
 
-        // Easy intuitive solution
         while (true) {
             pointer2 = pointer1.to;
+
+            if (pointer1.to == null) {
+                throw new Error("Out of bounds");
+            }
+
             pointer1.to = pointer1.to.to;
 
             if (counter == index) {
+                if (pointer1.to == null) {
+                    throw new Error("Out of bounds");
+                }
                 pointer2.to = pointer1.to.to;
+
+                if (pointer2.to == null) {
+                    this.tail = pointer2;
+                }
+
                 break;
             }
 
             counter++;
         }
-
-        // Refactor
-        // while (counter <= index) {
-        // pointer2 = pointer1.to;
-        // pointer1.to = pointer1.to.to;
-        // counter++;
-        // }
-
-        // pointer2.to = pointer1.to.to;
     }
 
     public int[] getAsArray() {
