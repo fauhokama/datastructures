@@ -66,7 +66,7 @@ public class SinglyLinkedList {
         // Actually, I think this is better as a first implementation.
         // I need to look for this solution. Then, I can think of something more
         // "pretty" programatically.
-        
+
         // while (true) {
         // pointer = sln.to;
         // SinglyLinkedNode nextNode = sln.to.to;
@@ -83,12 +83,39 @@ public class SinglyLinkedList {
     }
 
     public void removeAtHead() {
+        this.head = this.head.to;
     }
 
     public void removeAtTail() {
+        // Easy one pointer solution because of Java GC
+        // If not, I think you would need two pointers to don't lose reference.
+        if (this.head.to == null) {
+            return;
+        }
+
+        SinglyLinkedNode pointer = new SinglyLinkedNode(0);
+        pointer.to = this.head;
+
+        // First intuitive Solution
+        while (true) {
+            if (pointer.to.to.to == null) {
+                pointer.to.to = null;
+                break;
+            }
+
+            pointer.to = pointer.to.to;
+        }
+
+        // Second Solution:
+        // while (pointer.to.to.to != null) {
+        // pointer.to = pointer.to.to;
+        // }
+        // pointer.to.to = null;
+
     }
 
     public void removeAtIndex(int index) {
+
     }
 
     public int[] getAsArray() {
